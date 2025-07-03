@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Grid, Card, CardContent } from '@mui/material';
-import http from  '../http';
+import { AccessTime } from '@mui/icons-material';
+import http from '../http';
+import dayjs from 'dayjs';
+import global from '../global';
 
 function Tutorials() {
     const [tutorialList, setTutorialList] = useState([]);
@@ -28,6 +31,13 @@ function Tutorials() {
                                         <Typography variant="h6" sx={{ mb: 1 }}>
                                             {tutorial.title}
                                         </Typography>
+                                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+                                            color="text.secondary">
+                                            <AccessTime sx={{ mr: 1 }} />
+                                            <Typography>
+                                                {dayjs(tutorial.createdAt).format(global.datetimeFormat)}
+                                            </Typography>
+                                        </Box>
                                         <Typography sx={{ whiteSpace: 'pre-wrap' }}>
                                             {tutorial.description}
                                         </Typography>
