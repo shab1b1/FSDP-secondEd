@@ -3,6 +3,7 @@ import { Container, AppBar, Toolbar, Typography } from '@mui/material';
 import Tutorials from './pages/tutorials';
 import { BrowserRouter as Router, Routes, Route, Link }
   from 'react-router-dom';
+import navbar from './navbar';
 function App() {
   return (
     <Router>
