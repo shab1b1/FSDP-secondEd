@@ -1,31 +1,17 @@
 import './App.css';
-import { Container, AppBar, Toolbar, Typography } from '@mui/material';
-import Tutorials from './pages/tutorials';
-import { BrowserRouter as Router, Routes, Route, Link }
-  from 'react-router-dom';
-import navbar from './navbar';
+import { Container } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Navbar from './navbar'; // Make sure the path matches your project structure
+
 function App() {
   return (
     <Router>
-      <AppBar position="static" className='AppBar'>
-        <Container>
-          <Toolbar disableGutters={true}>
-            <Link to="/">
-              <Typography variant="h6" component="div">
-                Learning
-              </Typography>
-            </Link>
-            <Link to="/tutorials" ><Typography>Tutorials</Typography></Link>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      <Navbar />
       <Container>
-        <Routes>
-          <Route path={"/"} element={<Tutorials />} />
-          <Route path={"/tutorials"} element={<Tutorials />} />
-        </Routes>
+        {/* You can add your new content/routes here */}
       </Container>
     </Router>
   );
 }
+
 export default App;
