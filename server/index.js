@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
 require('dotenv').config();
 const cors = require('cors');
+const copRoute = require('./routes/cop');
 
+app.use(express.json());
 // Enable CORS
 app.use(cors({
     origin: process.env.CLIENT_URL
@@ -15,8 +16,9 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-const tutorialRoute = require('./routes/tutorial');
-app.use("/tutorial", tutorialRoute);
+
+const CopRoute = require('./routes/cop');
+app.use("/cop", copRoute);
 
 let port = process.env.APP_PORT;
 app.listen(port, () => {
