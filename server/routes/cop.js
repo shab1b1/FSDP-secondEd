@@ -15,19 +15,30 @@ router.post('/', (req, res) => {
   );
 });
 
+// SEARCH (title, description, authority)
+router.get('/search', (req, res) => {
+  const { q } = req.query;
+  if (!q) {
+    return res.status(400).json({ error: 'Missing search query' });
+  }
+  db.query(
+    `SELECT * FROM cop 
+     WHERE title LIKE ? 
+        OR description LIKE ?
+        OR authority LIKE ?`,
+    [`%${q}%`, `%${q}%`, `%${q}%`],
+    (err, results) => {
+      if (err) return res.status(500).json({ error: err });
+      res.json(results);
+    }
+  );
+});
+
 // READ ALL
 router.get('/', (req, res) => {
   db.query('SELECT * FROM cop', (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
-  });
-});
-
-// READ ONE
-router.get('/:id', (req, res) => {
-  db.query('SELECT * FROM cop WHERE id = ?', [req.params.id], (err, results) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(results[0]);
   });
 });
 
